@@ -85,7 +85,7 @@ Write a function that receives a list of numbers and returns only those that are
 def is_prime(number):
     """Verifies if a given number is prime."""
     if number < 2:
-        return False  # If the number is less than 2, it's not prime
+        return False  # If the number is less than 2, automatically it's not prime
     for i in range(2, int(number**0.5) + 1):
         if number % i == 0: #Here a for loop is started that loops through the numbers from 2 to the integer square root of the number plus 1.
             return False  # If it's divisible by any number between 2 and its square root, it's not prime
@@ -108,7 +108,7 @@ get_primes_from_list()  # Execute the function
 ### How does it work?
 The is_prime(number) function checks whether a given number is prime. It starts by verifying if the number is less than 2; if so, it returns False. Next, it iterates from 2 up to the integer square root of the number plus 1, checking if the number is divisible by any value in that range. If a divisor is found, it also returns False. If no divisors are found, the function returns True, indicating that the number is prime.
 
-The get_primes_from_list() function prompts the user to input a list of numbers separated by commas. It then converts the input into a list of integers and filters out the prime numbers using the es_primo function. If there are prime numbers in the list, it prints a message with the prime numbers found; otherwise, it indicates that no prime numbers were found. Additionally, it handles errors if the user enters invalid data.
+The get_primes_from_list() function prompts the user to input a list of numbers separated by commas. It then converts the input into a list of integers and filters out the prime numbers using the is_prime function. If there are prime numbers in the list, it prints a message with the prime numbers found; otherwise, it indicates that no prime numbers were found. Additionally, it handles errors if the user enters invalid data.
 
 Finally, get_primes_from_list() function is called to execute the entire process. 
 ## Fourth point 
@@ -127,7 +127,7 @@ def maximum_consecutive_sum(number_list):
     if not number_list:
         return 0  # If the list is empty, the sum is 0
 
-    max_sum = float("-inf")  # Initialize with a very small value (negative infinity)
+    max_sum = float()  
 
     for i in range(len(number_list) - 1):
         current_sum = number_list[i] + number_list[i + 1]
@@ -215,4 +215,4 @@ print("Words with the same letters are:", result)
 ```
 ### How does ir work?
 The is_anagram function checks if two strings are anagrams. Converts strings to lowercase, converts them to lists, sorts them, and converts them back to strings. Finally, compare the sorted strings to see if they are equal.
-The filter_anagrams function takes a list of words as input and returns a list of the words that are anagrams. Create a dictionary to store anagram words and a set to store non-anagram words. For each word, calculate a "code" by ordering its characters. If the code already exists in the dictionary, it adds the word to the corresponding list. If it doesn't exist, create a new dictionary entry with the word. Finally, it iterates over the dictionary and adds to the no_anagrams set the words that have more than one entry in the list.
+The filter_anagrams function takes a list of words as input and returns a list of the words that are anagrams. Create a dictionary to store anagram words and a set to store non-anagram words. For each word, calculate a "code" by ordering its characters. If the code already exists in the dictionary, it adds the word to the corresponding list. If it doesn't exist, create a new dictionary entry with the word. Finally, it iterates over the dictionary and adds to the non_anagrams set the words that have more than one entry in the list.
