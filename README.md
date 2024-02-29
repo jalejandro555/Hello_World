@@ -1,5 +1,5 @@
 # Hello_World - First challenge
-HellooooO WORLD, my name is Alejandro, and basically the last time I use Python or even needed to write on english was when i was in the school, so at this point the things that i know about python are equivalent to astrophysics, women or polythics. BUUUT i've always liked to challenge myself, SO what a better way to do it than learning again how to code on python doing it this time fully on english, ANNND obviously in record time. 
+HellooooO WORLD, my name is Alejandro, and basically the last time I use Python or even needed to write on English was when I was in the school, so at this point the things that i know about python are equivalent to my knowledge on football, women or polythics (not an expert). BUUUT i've always liked to challenge myself, SO what a better way to do it than learning again how to code on python doing it this time fully on english, ANNND obviously in record time. 
 Could there be mistakes? yes 
 Could there be tears? idk
 Will I return to Spanish in the future? for sure
@@ -113,3 +113,106 @@ The get_primes_from_list() function prompts the user to input a list of numbers 
 Finally, get_primes_from_list() function is called to execute the entire process. 
 ## Fourth point 
 Write a function that receives a list of integers and returns the largest sum between two consecutive elements.
+```python
+def maximum_consecutive_sum(number_list):
+    """
+    this function calculates the maximum sum betwen consecutive numbers in a list of integers.
+
+    Args:
+        number_list (list): A list of integers.
+
+    Returns:
+        float: The maximum sum between consecutive numbers.
+    """
+    if not number_list:
+        return 0  # If the list is empty, the sum is 0
+
+    max_sum = float("-inf")  # Initialize with a very small value (negative infinity)
+
+    for i in range(len(number_list) - 1):
+        current_sum = number_list[i] + number_list[i + 1]
+        max_sum = max(max_sum, current_sum)
+
+    return max_sum
+
+try:
+    user_input = input("Enter a list of numbers separated by commas: ")
+    number_list = [int(num) for num in user_input.split(",")]  # Split user input into a list of strings using comma as a separator.
+    result = maximum_consecutive_sum(number_list)
+    print(f"The maximum sum between consecutive numbers is: {result}")
+except ValueError:
+    print("Error: Enter a valid list of numbers separated by commas.")
+
+```
+### How does it work?
+the first thing that I did, was define a function called maximum_consecutive_sum. Its purpose is to find the maximum sum between consecutive numbers in a given list of integers. The maximum_consecutive_sum function takes a single argument, number_list, which is expected to be a list of integers, if the input list is empty the function immediately returns 0. It initializes max_sum with a very small value. This ensures that any valid sum encountered during iteration will be greater than this initial value. The function iterates through the list of numbers (excluding the last one) using a "for" loop, for each pair of consecutive numbers, it calculates their sum (current_sum), the maximum of the current sum and the previously calculated maximum sum (max_sum) is stored in max_sum. After processing all pairs of consecutive numbers, the function returns the maximum sum found. Finally the try and except block handles user input. If the user enters an invalid list, it displays an error message.
+## Fifth point
+Write a function that receives a list of strings and returns only those elements that have the same characters. input: ["love", "rome", "dog"], output ["love", "rome"]
+```python
+def is_anagram(cadena1, cadena2):
+    # Convert both strings to lowercase
+    cadena1 = cadena1.lower()
+    cadena2 = cadena2.lower()
+
+    # Convert the strings to lists
+    lista1 = list(cadena1)
+    lista2 = list(cadena2)
+
+    # Sort thethe lists
+    lista1.sort()
+    lista2.sort()
+
+    # Convert the lists back to strings
+    cadena1_sorted = "".join(lista1)
+    cadena2_sorted = "".join(lista2)
+
+    # Check if the sorted strings are equal (i.e., anagrams)
+    return cadena1_sorted == cadena2_sorted
+
+def filter_anagrams(lista):
+    # Create an empty dictionary called 'anagrams' to store anagram words
+    anagrams = {}
+    # Create an empty set to store non-anagram words
+    non_anagrams = set()
+
+    for word in lista:
+        # Generate a unique 'code' for each word by sorting its characters alphabetically
+        code = "".join(sorted(word))
+
+        # Check if the code is already in the 'anagrams' dictionary
+        if code in anagrams:
+            anagrams[code].append(word)
+            """"
+             If the code already exists, we add the word to the corresponding list
+             in the anagram dictionary. If it does not exist,
+             We create a new entry in the dictionary with the word.
+             """
+        else:
+            # If not, create a new entry with the word
+            anagrams[code] = [word]
+
+    # Iterate over the entries in the 'anagrams' dictionary
+    for code, words in anagrams.items():
+        # If there are more than one word with the same code, add them to the non-anagrams set
+        if len(words) > 1:
+            """
+             If there is more than one word associated with the same code
+             (that is, they are anagrams), we add them
+             to the set no_anagrams.
+             """
+            non_anagrams.update(words)
+
+    # Convert the non-anagrams set back to a list
+    return list(non_anagrams)
+
+# Ask the user for a list of words
+user_input = input("Enter a list of words separated by commas: ")
+word_list = user_input.split(",")
+
+# Filter out the anagrams
+result = filter_anagrams(word_list)
+print("Words with the same letters are:", result)
+```
+### How does ir work?
+The is_anagram function checks if two strings are anagrams. Converts strings to lowercase, converts them to lists, sorts them, and converts them back to strings. Finally, compare the sorted strings to see if they are equal.
+The filter_anagrams function takes a list of words as input and returns a list of the words that are anagrams. Create a dictionary to store anagram words and a set to store non-anagram words. For each word, calculate a "code" by ordering its characters. If the code already exists in the dictionary, it adds the word to the corresponding list. If it doesn't exist, create a new dictionary entry with the word. Finally, it iterates over the dictionary and adds to the no_anagrams set the words that have more than one entry in the list.
